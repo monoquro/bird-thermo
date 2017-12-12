@@ -31,10 +31,10 @@
     var ctx = document.getElementById("chart").getContext("2d");
     requestAjax(API_END_POINT, function(response){
       var labels = response.map(function(element, index, array) {
-        return element[hh/mm];
+        return element["hh/mm"];
       });
       var datas = response.map(function(element, index, array) {
-        return element[℃];
+        return element["data"];
       });
       console.dir(JSON.parse(labels));
       console.dir(JSON.parse(datas));
