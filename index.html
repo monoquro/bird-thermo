@@ -16,21 +16,18 @@
   <script>
   var API_END_POINT = "https://script.google.com/macros/s/AKfycbw3L1MfE0SPj0Nd-oQH3ePD8pxqPUEomJ94jvJ-5UcT6AFEDt39/exec"
   var xhr = new XMLHttpRequest;
-    
- 
-    
-  window.onload = function(){
-    var ctx = document.getElementById("chart").getContext("2d");
-    
+  var datas;
   xhr.open("GET", API_END_POINT, true);
   xhr.onreadystatechange = function(){
     if (xhr.readyState === 4 && xhr.status === 200){
-      var obj = JSON.parse(xhr.responseText);
-      console.dir(obj);
+      datas = JSON.parse(xhr.responseText);
     }
   }
-  xhr.send(null);
-    
+   
+  window.onload = function(){
+    var ctx = document.getElementById("chart").getContext("2d");
+    xhr.send(null);
+    console.dir(datas);  
     window.myLine = new Chart(ctx).Line(lineChartData, {
       responsive: true
       // 下記を追加すると線がまっすぐになります
