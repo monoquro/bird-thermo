@@ -30,13 +30,32 @@
   window.onload = function(){
     var ctx = document.getElementById("chart").getContext("2d");
     requestAjax(API_END_POINT, function(response){
-      var labels = response.map(function(element, index, array) {
+      var labelses = response.map(function(element, index, array) {
         return element["date"];
       });
       var datas = response.map(function(element, index, array) {
         return element["data"];
       });
-      drawGraph("chart", datas, datas, labels);
+      var barChartData = {
+        labels: labelses,
+        datasets: [
+          {
+           label: 'sample-line',
+           data: datas,
+           borderColor : "rgba(254,97,132,0.8)",
+           backgroundColor : "rgba(254,97,132,0.5)",
+          }
+        ]};
+      var complexChartOption = {
+        responsive: true,
+      };
+      window.myBar = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData,
+        options: complexChartOption
+      });
+      
+      // drawGraph("chart", datas, datas, labels);
       console.dir(labels);
       console.dir(datas);
     });
