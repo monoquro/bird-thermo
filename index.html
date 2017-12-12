@@ -29,7 +29,7 @@
 
   window.onload = function(){
     var ctx = document.getElementById("chart").getContext("2d");
-    requestAjax("http://example.com/endpoint1", function(response){
+    requestAjax(API_END_POINT, function(response){
       console.dir(response);
     });
     window.myLine = new Chart(ctx).Line(lineChartData, {
