@@ -30,7 +30,7 @@
   window.onload = function(){
     var ctx = document.getElementById("chart").getContext("2d");
     requestAjax(API_END_POINT, function(response){
-      console.dir(response);
+      console.dir(JSON.parse(response));
     });
     window.myLine = new Chart(ctx).Line(lineChartData, {
       responsive: true
