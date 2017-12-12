@@ -15,19 +15,25 @@
   <!-- もしくは<script src="Chart.min.js"></script> -->
   <script>
   var API_END_POINT = "https://script.google.com/macros/s/AKfycbw3L1MfE0SPj0Nd-oQH3ePD8pxqPUEomJ94jvJ-5UcT6AFEDt39/exec"
-   
+  (function(){
+    var requestAjax = function(endpoint, callback) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(){
+          if (this.readyState==4 && this.status==200) {
+            callback(this.response);
+          }
+      };
+      xhr.responseType = 'json';
+      xhr.open('GET',endpoint,true);
+      xhr.send();
+    }; 
+  })();
+
   window.onload = function(){
     var ctx = document.getElementById("chart").getContext("2d");
-    var xhr = new XMLHttpRequest;
-    var datas;
-    xhr.open("GET", API_END_POINT, true);
-    xhr.onreadystatechange = function(){
-      if (xhr.readyState === 4 && xhr.status === 200){
-        datas = JSON.parse(xhr.responseText);
-      }
-    }
-    xhr.send(null);
-    console.dir(datas);
+    requestAjax("http://example.com/endpoint1", function(response){
+      console.dir(response);
+    });
     window.myLine = new Chart(ctx).Line(lineChartData, {
       responsive: true
       // 下記を追加すると線がまっすぐになります
