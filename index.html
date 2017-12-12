@@ -30,7 +30,14 @@
   window.onload = function(){
     var ctx = document.getElementById("chart").getContext("2d");
     requestAjax(API_END_POINT, function(response){
-      console.dir(JSON.parse(response));
+      var labels = response.map(function(element, index, array) {
+        return element[hh/mm];
+      });
+      var datas = response.map(function(element, index, array) {
+        return element[℃];
+      });
+      console.dir(JSON.parse(labels));
+      console.dir(JSON.parse(datas));
     });
     window.myLine = new Chart(ctx).Line(lineChartData, {
       responsive: true
