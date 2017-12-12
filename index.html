@@ -36,8 +36,8 @@
       var datas = response.map(function(element, index, array) {
         return element["data"];
       });
-      console.dir(JSON.parse(labels));
-      console.dir(JSON.parse(datas));
+      console.dir(labels);
+      console.dir(datas);
     });
     window.myLine = new Chart(ctx).Line(lineChartData, {
       responsive: true
